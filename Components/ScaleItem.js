@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
 
 class ScaleItem extends React.Component{
+    constructor(){
+        super()
+    }
     render(){
         const scale = this.props.scale
         return(

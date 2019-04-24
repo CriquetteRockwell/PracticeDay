@@ -1,10 +1,13 @@
 // Login.js
 
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, ImageBackground, TouchableOpacity } from 'react-native'
 import firebase from 'firebase'
 
 export default class Login extends React.Component {
+  constructor(){
+    super()
+  }
   state = { email: '', password: '', errorMessage: null }
 
   handleLogin = () => {
@@ -18,8 +21,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Login</Text>
+      <ImageBackground source={require('../assets/backgroundConnexion.png')} style={styles.container}>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
@@ -39,13 +41,13 @@ export default class Login extends React.Component {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Login" color="#FF6060" onPress={this.handleLogin} />
-        <Button
-          title="Don't have an account? Sign Up"
-          color="#FF6060"
-          onPress={() => this.props.navigation.navigate('SignUp')}
-        />
-      </View>
+        <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+          <Text>Se connecter</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SignUp')}>
+          <Text>Pas de compte ? Inscrivez-vous</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     )
   }
 }
@@ -59,8 +61,25 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     width: '90%',
+    padding:8,
     borderColor: 'gray',
     borderWidth: 1,
-    marginTop: 8
+    marginTop: 8,
+    backgroundColor:'#ffffff',
+    borderRadius:20
+  },
+  button: {
+    marginTop: 15,
+    padding:5,
+    minWidth: 240,
+    maxWidth: 360,
+    minHeight: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFDFDF',
+    opacity:0.9,
+    borderColor:'#FF6060',
+    borderWidth:4,
+    borderRadius: 25
   }
 })

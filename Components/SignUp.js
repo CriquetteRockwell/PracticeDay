@@ -1,10 +1,13 @@
 // SignUp.js
 
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button, TouchableOpacity, ImageBackground } from 'react-native'
 import firebase from 'firebase'
 
 export default class SignUp extends React.Component {
+  constructor(){
+    super()
+  }
   state = { email: '', password: '', errorMessage: null }
   
   handleSignUp = () => {
@@ -17,8 +20,7 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Sign Up</Text>
+      <ImageBackground source={require('../assets/backgroundInscription.png')} style={styles.container}>
         {this.state.errorMessage &&
           <Text style={{ color: 'red' }}>
             {this.state.errorMessage}
@@ -32,19 +34,19 @@ export default class SignUp extends React.Component {
         />
         <TextInput
           secureTextEntry
-          placeholder="Password"
+          placeholder="Mot de passe"
           autoCapitalize="none"
           style={styles.textInput}
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Sign Up" color="#F78EA9" onPress={this.handleSignUp} />
-        <Button
-          title="Already have an account? Login"
-          color="#F78EA9"
-          onPress={() => this.props.navigation.navigate('Login')}
-        />
-      </View>
+        <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+          <Text>S'inscrire</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+          <Text>Déjà un compte ? Connectez-vous</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     )
   }
 }
@@ -57,8 +59,25 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     width: '90%',
+    padding:8,
     borderColor: 'gray',
     borderWidth: 1,
-    marginTop: 8
+    marginTop: 8,
+    backgroundColor:'#ffffff',
+    borderRadius:20
+  },
+  button: {
+    marginTop: 15,
+    padding:5,
+    minWidth: 240,
+    maxWidth: 360,
+    minHeight: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FCDDE5',
+    opacity:0.9,
+    borderColor:'#F78EA9',
+    borderWidth:4,
+    borderRadius: 25
   }
 })

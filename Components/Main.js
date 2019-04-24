@@ -1,10 +1,13 @@
 // Main.js
 
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, Button, TouchableOpacity, ImageBackground } from 'react-native'
 import firebase from 'firebase'
 
 export default class Main extends React.Component {
+  constructor(){
+    super()
+  }
   state = { currentUser: null }
   componentDidMount() {
     const { currentUser } = firebase.auth()
@@ -19,7 +22,7 @@ export default class Main extends React.Component {
   render() {
     const { currentUser } = this.state
     return (
-      <View style={styles.container}>
+      <ImageBackground source={require('../assets/backgroundMain.png')} style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.welcome_text}>
             Bienvenue, {currentUser && currentUser.email}
@@ -31,36 +34,41 @@ export default class Main extends React.Component {
 
         <View style={styles.body_row}>
         </View>
-
         <View style={styles.body_row}>
           <View style={styles.body_cell}>
-            <Image source={require('../assets/musical-note.png')} style={styles.icon}/>
-            <Text/>
-            <Button color='#9B5FFF' title="Entraînement" onPress={() => {}}/>
+            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Exercices')}>
+              <Image source={require('../assets/musical-note.png')} style={styles.icon}/>
+              <Text/>
+              <Text>Entraînement</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.body_cell}>
-            <Image source={require('../assets/music-stand.png')} style={styles.icon}/>
-            <Text/>
-            <Button color='#9B5FFF' title="Exercices" onPress={() => this.props.navigation.navigate('Scales')}/>
+            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Exercices')}>
+              <Image source={require('../assets/music-stand.png')} style={styles.icon}/>
+              <Text/>
+              <Text>Exercices</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
         <View style={styles.body_row}>
           <View style={styles.body_cell}>
-            <Image source={require('../assets/music.png')} style={styles.icon}/>
-            <Text/>
-            <Button color='#9B5FFF' title="Morceau" onPress={() => {}}/>
+            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Pieces')}>
+              <Image source={require('../assets/music.png')} style={styles.icon}/>
+              <Text/>
+              <Text>Morceaux</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.body_cell}>
-            <Image source={require('../assets/flute.png')} style={styles.icon}/>
-            <Text/>
-            <Button color='#9B5FFF' title="Mon instrument" onPress={() => {}}/>
+            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Doigtes')}>
+              <Image source={require('../assets/flute.png')} style={styles.icon}/>
+              <Text/>
+              <Text>Mon instrument</Text>
+            </TouchableOpacity>
           </View>
         </View>
-
-        <View style={styles.body_row}>
-        </View>
-      </View>
+        <View style={styles.body_row}/>
+      </ImageBackground>
     )
   }
 }
@@ -100,5 +108,17 @@ const styles = StyleSheet.create({
   icon: {
     width : 50,
     height : 50
+  },
+  bouton:{
+    height : 100,
+    width : 175,
+    borderColor : "#9B5FFF",
+    borderWidth : 4,
+    borderRadius : 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin : 5,
+    backgroundColor:'#ffffff',
+    opacity: 0.9
   }
 })

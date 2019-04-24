@@ -4,6 +4,9 @@ import ScaleItem from './ScaleItem'
 import scales from '../Helpers/ScalesData'
 
 export default class Scales extends React.Component {
+    constructor(){
+        super()
+    }
     render(){
         return(
             <View style={styles.container}>
