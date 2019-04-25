@@ -14,7 +14,7 @@ export default class Exercice extends React.Component {
         const query = ref.orderByChild('titre')
         query.equalTo(nomExo)
         .on('value', (snapshot) => {
-            console.log(snapshot.val()); this.setState({exerciceComplet: snapshot.val(), chargement:false})
+            this.setState({exerciceComplet: snapshot.val(), chargement:false})
         });
     }
 
@@ -27,7 +27,7 @@ export default class Exercice extends React.Component {
         else{
             const array = Object.values(this.state.exerciceComplet);
             const exoInfos = array.map(exercice => <View style={styles.container}>
-            <View style={styles.titre_container}><Text style={styles.titre}>{exercice.titre}{"\n"}</Text></View>
+            <View style={styles.titre_container}><Text style={styles.titre}>{exercice.titre}</Text></View>
             <Text style={styles.diff}>Difficulté : {exercice.level}{'\n'}Durée : {exercice.len} minutes</Text>
             <View style={styles.desc_container}><Text style={styles.desc}>{exercice.desc}</Text></View>
             <Image source={{uri:exercice.pic}} style={styles.pic} resizeMode="contain"/>
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
     },
     titre:{
         maxWidth:300,
-        fontSize:15
+        fontSize:15,
+        fontFamily:'monospace'
     },
     diff:{
         paddingLeft : 5,

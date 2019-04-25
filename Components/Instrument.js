@@ -32,14 +32,14 @@ export default class Instrument extends React.Component {
 
             <View style={styles.body_row}>
                 <View style={styles.body_cell}>
-                    <TouchableOpacity style={styles.bouton} onPress={() => {}}>
+                    <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Infos', {categorie: 'histoire'})}>
                     <Image source={require('../assets/pan-flute.png')} style={styles.icon}/>
                     <Text/>
                     <Text>Histoire</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.body_cell}>
-                    <TouchableOpacity style={styles.bouton} onPress={() => {}}>
+                    <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Infos', {categorie: 'musiciens'})}>
                     <Image source={require('../assets/man-playing-flute.png')} style={styles.icon}/>
                     <Text/>
                     <Text>Musiciens</Text>
@@ -49,14 +49,14 @@ export default class Instrument extends React.Component {
 
             <View style={styles.body_row}>
                 <View style={styles.body_cell}>
-                    <TouchableOpacity style={styles.bouton} onPress={() => {}}>
+                    <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Infos', {categorie: 'airs'})}>
                         <Image source={require('../assets/music-sheet.png')} style={styles.icon}/>
                         <Text/>
                         <Text>Grands airs</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.body_cell}>
-                    <TouchableOpacity style={styles.bouton} onPress={() => {}}>
+                    <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Infos', {categorie: 'fonct'})}>
                         <Image source={require('../assets/levels.png')} style={styles.icon}/>
                         <Text/>
                         <Text>Fonctionnement</Text>

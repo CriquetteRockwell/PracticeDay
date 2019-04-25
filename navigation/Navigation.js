@@ -14,6 +14,7 @@ import PieceItem from '../Components/PieceItem'
 import Instrument from '../Components/Instrument'
 import Param from '../Components/Param'
 import Training from '../Components/Training'
+import Infos from '../Components/Infos'
 
 const SearchStackNavigator = createStackNavigator({
   Loading: {
@@ -116,7 +117,8 @@ const SearchStackNavigator = createStackNavigator({
       title: 'Mon instrument',
       headerStyle:{
         backgroundColor: '#1B9B9F'
-      }
+      },
+      headerTintColor:'#fff'
     }
   },
   Param: {
@@ -137,6 +139,16 @@ const SearchStackNavigator = createStackNavigator({
         backgroundColor: '#D4314A'
       },
       headerTintColor:'#fff'
+    }
+  },
+  Infos: {
+    screen: Infos,
+    navigationOptions:{
+      title: 'Infos',
+      headerStyle:{
+        backgroundColor: '#1B9B9F'
+      },
+      headerTintColor:'#ffffff'
     }
   }
 })

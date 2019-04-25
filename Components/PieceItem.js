@@ -29,7 +29,7 @@ export default class PieceItem extends React.Component {
         else{
             const array = Object.values(this.state.morceauComplet);
             const morceauInfos = array.map(morceau => <View style={styles.container}>
-            <View style={styles.titre_container}><Text style={styles.titre}>{morceau.titre}{"\n"}</Text></View>
+            <View style={styles.titre_container}><Text style={styles.titre}>{morceau.titre}</Text></View>
             <Text style={styles.diff}>Difficulté : {morceau.level}</Text>
             <View style={styles.desc_container}>
                 <Text>Compositeur : {morceau.compo}</Text>
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     },
     titre:{
         maxWidth:300,
-        fontSize:18
+        fontSize:18,
+        fontFamily:'monospace'
     },
     titre_container:{
         marginTop:5,
