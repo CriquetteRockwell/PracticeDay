@@ -56,7 +56,7 @@ export default class Exercices extends React.Component {
                         renderItem={({item}) =>
                             <View style={{flex:1,alignItems:'center', justifyContent:'center'}}>
                                 <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Exercice', {exo: item.titre})}>
-                                    <Text style={styles.exercice}>{item.titre}</Text>
+                                    <Text style={styles.exercice}>{item.titre} (lv {item.level})</Text>
                                 </TouchableOpacity>
                             </View>
                         }
