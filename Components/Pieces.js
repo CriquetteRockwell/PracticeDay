@@ -1,12 +1,30 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, Button, FlatList, TouchableOpacity, ImageBackground} from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, Button, FlatList, TouchableOpacity, ImageBackground, SectionList} from 'react-native'
 import firebase from 'firebase'
+import _ from 'lodash'
 
 export default class Pieces extends React.Component {
     constructor(){
         super()
         //firebase.auth()
         this.state={pieces:[], chargement:true}
+    }
+
+    fromArrayToSectionData(data) {
+        let ds = _.groupBy(data, d => d.compo);
+        ds = _.reduce(
+            ds,
+            (acc, next, index) =>{
+                acc.push({
+                    key: index,
+                    data: next
+                });
+                return acc;
+            },
+            []
+        );
+        ds = _.orderBy(ds, ["key"]);
+        return ds;
     }
     
     componentDidMount(){
@@ -24,10 +42,16 @@ export default class Pieces extends React.Component {
         }
         else{
             const array = Object.values(this.state.pieces);
+            const formatedData = this.fromArrayToSectionData(array);
+            const renderSection = ({section}) => (
+                <View style={{padding: 8, backgroundColor: '#E5892D', width:'100%', opacity:0.9}}>
+                    <Text style={{ color: 'white'}}>{section.key}</Text>
+                </View>
+            )
             return(
                 <ImageBackground source={require('../assets/backgroundViolin.png')} style={styles.container}>
-                    <FlatList
-                        data={array.sort((a,b) => a.titre.localeCompare(b.titre))}
+                    <SectionList
+                        sections={formatedData}
                         keyExtractor={(item) => item.titre.toString()}
                         renderItem={({item}) =>
                             <View style={{flex:1,alignItems:'center', justifyContent:'center'}}>
@@ -36,6 +60,7 @@ export default class Pieces extends React.Component {
                                 </TouchableOpacity>
                             </View>
                         }
+                        renderSectionHeader={renderSection}
                     />
                 </ImageBackground>
             )

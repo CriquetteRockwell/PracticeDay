@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, Button, FlatList, TouchableOpacity, SectionList, ImageBackground } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, Button, TouchableOpacity, SectionList, ImageBackground } from 'react-native'
 import firebase from 'firebase'
 import _ from 'lodash'
 

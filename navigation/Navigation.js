@@ -11,6 +11,9 @@ import Exercice from '../Components/Exercice'
 import Doigtes from '../Components/Doigtes'
 import Pieces from '../Components/Pieces'
 import PieceItem from '../Components/PieceItem'
+import Instrument from '../Components/Instrument'
+import Param from '../Components/Param'
+import Training from '../Components/Training'
 
 const SearchStackNavigator = createStackNavigator({
   Loading: {
@@ -76,7 +79,7 @@ const SearchStackNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Exercice',
       headerStyle:{
-        backgroundColor: '#DAC5FF'
+        backgroundColor: '#3AE381'
       }
     }
   },
@@ -103,8 +106,37 @@ const SearchStackNavigator = createStackNavigator({
     navigationOptions:{
       title: 'Morceau',
       headerStyle:{
-        backgroundColor: '#DAC5FF'
+        backgroundColor: '#F0C619'
       }
+    }
+  },
+  Instrument: {
+    screen: Instrument,
+    navigationOptions:{
+      title: 'Mon instrument',
+      headerStyle:{
+        backgroundColor: '#1B9B9F'
+      }
+    }
+  },
+  Param: {
+    screen: Param,
+    navigationOptions:{
+      title: 'Entraînement',
+      headerStyle:{
+        backgroundColor: '#D4314A'
+      },
+      headerTintColor:'#fff'
+    }
+  },
+  Training: {
+    screen: Training,
+    navigationOptions:{
+      title: 'Entraînement',
+      headerStyle:{
+        backgroundColor: '#D4314A'
+      },
+      headerTintColor:'#fff'
     }
   }
 })

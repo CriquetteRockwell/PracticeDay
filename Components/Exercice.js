@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Platform, Image, Text, View, Button, FlatList } from 'react-native'
+import { StyleSheet, Platform, Image, Text, View, Button, FlatList, ImageBackground } from 'react-native'
 import firebase from 'firebase'
 
 export default class Exercice extends React.Component {
@@ -16,7 +16,6 @@ export default class Exercice extends React.Component {
         .on('value', (snapshot) => {
             console.log(snapshot.val()); this.setState({exerciceComplet: snapshot.val(), chargement:false})
         });
-        console.log(nomExo)
     }
 
     render(){
@@ -27,15 +26,16 @@ export default class Exercice extends React.Component {
         }
         else{
             const array = Object.values(this.state.exerciceComplet);
-            const exoInfos = array.map(exercice => <View><Text style={styles.titre}>{exercice.titre}{"\n"}</Text>
-            <Text style={styles.diff}>Difficulté : {exercice.level}</Text>
-            <Text style={styles.desc}>{"\n"}{"\n"}Déroulement :{"\n"}{"\n"}{exercice.desc}{"\n"}{"\n"}</Text>
+            const exoInfos = array.map(exercice => <View style={styles.container}>
+            <View style={styles.titre_container}><Text style={styles.titre}>{exercice.titre}{"\n"}</Text></View>
+            <Text style={styles.diff}>Difficulté : {exercice.level}{'\n'}Durée : {exercice.len} minutes</Text>
+            <View style={styles.desc_container}><Text style={styles.desc}>{exercice.desc}</Text></View>
             <Image source={{uri:exercice.pic}} style={styles.pic} resizeMode="contain"/>
             </View>)
             return(
-                <View style={styles.container}>
+                <ImageBackground source={require('../assets/backgroundPiano.png')} style={styles.container}>
                     {exoInfos}
-                </View>
+                </ImageBackground>
             )
         }
     }
@@ -45,21 +45,45 @@ const styles = StyleSheet.create({
     container: {
       flex: 1
     },
+    titre_container:{
+        marginTop:5,
+        marginBottom:5,
+        paddingRight:5,
+        paddingLeft:5,
+        width : '100%',
+        minHeight : 50,
+        borderWidth:4,
+        borderColor:'#3AE381',
+        backgroundColor:'#C3F6D9',
+        opacity:0.9,
+        alignItems:'center',
+        justifyContent:'center'
+    },
     titre:{
-        fontSize:25,
-        fontWeight:'bold',
-        textAlign:'center',
+        maxWidth:300,
+        fontSize:15
     },
     diff:{
-        fontSize:18,
-        color:'dimgrey'
+        paddingLeft : 5,
+        fontSize:20,
+        color:'#000000',
+        backgroundColor : '#ffffff',
+        opacity : .6
+    },
+    desc_container:{
+        margin:5,
+        padding:5,
+        borderWidth:2,
+        borderColor:'#ffffff',
+        borderRadius:5,
+        backgroundColor:'#f0f0f0',
+        opacity:0.9
     },
     desc:{
         fontSize:15
     },
     pic:{
-        width: '100%',
-        height: 200,
+        flex:1,
         borderRadius:30
     }
 })

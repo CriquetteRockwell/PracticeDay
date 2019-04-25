@@ -36,7 +36,7 @@ export default class Main extends React.Component {
         </View>
         <View style={styles.body_row}>
           <View style={styles.body_cell}>
-            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Exercices')}>
+            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Param')}>
               <Image source={require('../assets/musical-note.png')} style={styles.icon}/>
               <Text/>
               <Text>Entraînement</Text>
@@ -60,7 +60,7 @@ export default class Main extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.body_cell}>
-            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Doigtes')}>
+            <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate('Instrument')}>
               <Image source={require('../assets/flute.png')} style={styles.icon}/>
               <Text/>
               <Text>Mon instrument</Text>
